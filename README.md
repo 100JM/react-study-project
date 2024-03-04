@@ -88,7 +88,7 @@ function Header(props) {
 }
 ```
 
-구조분해할당도 가능하다.
+- 구조분해할당도 가능하다.
 ```javascript
 // 상위 컴포넌트
 import Header from './components/Header';
@@ -116,3 +116,74 @@ function Header({name, age}) {
 }
 ```
 
+- children prop : 리액트에서 설정한 내장 prop으로 컴포넌트 사이 내용(택스트)을 의미한다.
+```javascript
+// 상위 컴포넌트
+import Header from './components/Header';
+function App() {
+  return(
+    <>
+      <Header>My name is Tom</Header>
+    </>
+  );
+}
+
+// 하위 컴포넌트
+function Header(props) {
+  return(
+    <header>
+      <h2>{props.children}</h2> // <h2>My name is Tom</h2>
+    </header>
+  )
+}
+```
+
+- props를 단일 객체로 그룹화 : ...을 사용하여 하나의 객체에 props로 분류되는 모든 것을 모아온다.
+```javascript
+// 상위 컴포넌트
+import Header from './components/Header';
+function App() {
+  return(
+    <>
+      <Header id="basicHeader" className="headerClass">
+        My name is Tom
+      </Header>
+    </>
+  );
+}
+
+// 하위 컴포넌트
+function Header({children, ...props}) {
+  return(
+    <header {...props}> // <header id="basicHeader" className="headerClass">
+      <h2>{children}</h2>
+    </header>
+  )
+}
+```
+
+- 기본값 설정
+```javascript
+// 상위 컴포넌트
+import Header from './components/Header';
+function App() {
+  return(
+    <>
+      <Header id="basicHeader" className="headerClass">
+        My name is Tom
+      </Header>
+    </>
+  );
+}
+
+// 하위 컴포넌트
+function Header({children, ...props, HeaderContainer = 'div'}) {
+  return(
+    <HeaderContainer> // <div>로 작
+      <header {...props}> // <header id="basicHeader" className="headerClass">
+        <h2>{children}</h2>
+      </header>
+    </HeaderContainer>
+  )
+}
+```
