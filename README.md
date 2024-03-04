@@ -179,7 +179,7 @@ function App() {
 // 하위 컴포넌트
 function Header({children, ...props, HeaderContainer = 'div'}) {
   return(
-    <HeaderContainer> // <div>로 작
+    <HeaderContainer> // <div>로 작동
       <header {...props}> // <header id="basicHeader" className="headerClass">
         <h2>{children}</h2>
       </header>
@@ -192,7 +192,7 @@ function Header({children, ...props, HeaderContainer = 'div'}) {
 리액트 Hook중 하나인 useState는 컴포넌트의 상태를 편하게 생성하고 관리할 수 있는 도구이다.   
 state 생성과 동시에 가져야할 초기값을 useState 함수에 인자로 넣어주면 state와 setState를 배열 형태로 리턴해준다.
 ```javascript
-const [state, setState] = useState(); // [현재 상태,  
+const [state, setState] = useState(); // [현재 상태, 상태 업데이트 함수] 
 ```
 컴포넌트의 현재 상태 값은 state 변수에 담겨져있고, setState함수를 이용해 변경할 수 있다.(state & setState는 마음대로 지정 가능)   
 state가 변경되면 해당 컴포넌트는 다시 렌더링이 된다.
